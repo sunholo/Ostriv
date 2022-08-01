@@ -1,4 +1,4 @@
-package com.ostriv;
+package fx;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
