@@ -1,19 +1,17 @@
 package fx;
 
-import animal.Animal;
-import animal.herbivorous.Duck;
+import creature.creatureInterface.creatureName;
+import creature.herbivorous.Duck;
+import creature.predator.Wolf;
+import island.FactoryLocation;
+import island.Island;
+import island.Location;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public  class Runner {
+public class Runner {
     public static void main(String[] args) {
-        Duck duck = new Duck();
-        duck.reproduction();
-        duck.movement();
-        duck.dying();
-        HashMap<Integer,Animal> map = new HashMap<>();
-
+        Island island = new Island();
+        island.fillIsland(island.getIslandArray());
+        System.out.println(island);
 
     }
 }
