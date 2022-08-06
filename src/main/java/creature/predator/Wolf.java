@@ -3,15 +3,17 @@ package creature.predator;
 import creature.creatureInterface.creatureName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @AllArgsConstructor
 @Getter
 @ToString
 public class Wolf extends Predator {
-    private final static Integer WEIGHT = Integer.valueOf(50);
-    private volatile Integer id ;
+    private volatile Integer id;
+    private final Double WEIGHT = 50d;
+    private final Double AMOUNT_FOOD = 8d;
+    private volatile Double food;
+
     @Override
     public void dying() {
 

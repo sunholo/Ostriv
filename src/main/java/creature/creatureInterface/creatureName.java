@@ -11,7 +11,7 @@ public enum creatureName {
     DEER,   //олень
     GOAT,   //цап
     HAMSTER,    //хом'як
-    KANGAROO,   //кенгуру
+    BOAR,   //кнур
     RABBIT,     //заєць
     SHEEP,      //вівця
     BEAR,       //ведмідь

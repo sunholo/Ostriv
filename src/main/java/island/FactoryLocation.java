@@ -17,7 +17,7 @@ public class FactoryLocation {
         newLocation.map.put(creatureName.COW,new HashMap<Integer,Creature>());
         newLocation.map.put(creatureName.GOAT,new HashMap<Integer,Creature>());
         newLocation.map.put(creatureName.HAMSTER,new HashMap<Integer,Creature>());
-        newLocation.map.put(creatureName.KANGAROO,new HashMap<Integer,Creature>());
+        newLocation.map.put(creatureName.BOAR,new HashMap<Integer,Creature>());
         newLocation.map.put(creatureName.RABBIT,new HashMap<Integer,Creature>());
         newLocation.map.put(creatureName.SHEEP,new HashMap<Integer,Creature>());
         newLocation.map.put(creatureName.BEAR,new HashMap<Integer,Creature>());

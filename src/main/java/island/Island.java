@@ -1,10 +1,6 @@
 package island;
 
 import creature.creatureInterface.creatureName;
-import creature.herbivorous.*;
-import creature.predator.Bear;
-import creature.predator.Eagle;
-import creature.predator.Snake;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -23,7 +19,7 @@ public class Island {
     private volatile Integer deerId = 0;
     private volatile Integer goatId = 0;
     private volatile Integer hamsterId = 0;
-    private volatile Integer kangarooId = 0;
+    private volatile Integer boarId = 0;
     private volatile Integer rabbitId = 0;
     private volatile Integer sheepId = 0;
     private volatile Integer bearId = 0;
@@ -53,12 +49,12 @@ public class Island {
         randomAnimalFill(array, 2, "DUCK");
         randomAnimalFill(array, 2, "HORSE");
         randomAnimalFill(array, 2, "FOX");
-        randomAnimalFill(array, 2, "PLANT");
+        randomAnimalFill(array, 100, "PLANT");
         randomAnimalFill(array, 2, "COW");
         randomAnimalFill(array, 2, "DEER");
         randomAnimalFill(array, 2, "GOAT");
         randomAnimalFill(array, 2, "HAMSTER");
-        randomAnimalFill(array, 2, "KANGAROO");
+        randomAnimalFill(array, 2, "BOAR");
         randomAnimalFill(array, 2, "RABBIT");
         randomAnimalFill(array, 2, "SHEEP");
         randomAnimalFill(array, 2, "BEAR");
@@ -88,7 +84,7 @@ public class Island {
                 case DEER -> randomLocation.addCreature(randomLocation, creatureName.valueOf(name), getDeerId());
                 case GOAT -> randomLocation.addCreature(randomLocation, creatureName.valueOf(name), getGoatId());
                 case HAMSTER -> randomLocation.addCreature(randomLocation, creatureName.valueOf(name), getHamsterId());
-                case KANGAROO -> randomLocation.addCreature(randomLocation, creatureName.valueOf(name), getKangarooId());
+                case BOAR -> randomLocation.addCreature(randomLocation, creatureName.valueOf(name), getBoarId());
                 case RABBIT -> randomLocation.addCreature(randomLocation, creatureName.valueOf(name), getRabbitId());
                 case SHEEP -> randomLocation.addCreature(randomLocation, creatureName.valueOf(name), getSheepId());
                 case BEAR -> randomLocation.addCreature(randomLocation, creatureName.valueOf(name), getBearId());
@@ -99,80 +95,80 @@ public class Island {
         }
     }
 
-    public Integer getHorseId() {
+    private Integer getHorseId() {
         horseId++;
         return horseId;
     }
 
-    public Integer getPlantId() {
+    private Integer getPlantId() {
         plantId++;
         return plantId;
     }
 
-    public Integer getFoxId() {
+    private Integer getFoxId() {
         foxId++;
         return foxId;
     }
 
-    public Integer getDuckId() {
+    private Integer getDuckId() {
         duckId++;
         return duckId;
     }
 
-    public Integer getWolfId() {
+    private Integer getWolfId() {
         wolfId++;
         return wolfId;
     }
-    public Integer getWormId() {
+    private Integer getWormId() {
         wormId++;
         return wormId;
     }
-    public Integer getCowId() {
+    private Integer getCowId() {
         cowId++;
         return cowId;
     }
 
-    public Integer getDeerId() {
+    private Integer getDeerId() {
         deerId++;
         return deerId;
     }
 
-    public Integer getGoatId() {
+    private Integer getGoatId() {
         goatId++;
         return goatId;
     }
 
-    public Integer getHamsterId() {
+    private Integer getHamsterId() {
         hamsterId++;
         return hamsterId;
     }
 
-    public Integer getKangarooId() {
-        kangarooId++;
-        return kangarooId;
+    private Integer getBoarId() {
+        boarId++;
+        return boarId;
     }
 
-    public Integer getRabbitId() {
+    private Integer getRabbitId() {
         rabbitId++;
         return rabbitId;
     }
 
-    public Integer getSheepId() {
+    private Integer getSheepId() {
         sheepId++;
         return sheepId;
     }
 
-    public Integer getBearId() {
+    private Integer getBearId() {
         bearId++;
         return bearId;
     }
 
-    public Integer getEagleId() {
+    private Integer getEagleId() {
         eagleId++;
         return eagleId;
     }
 
-    public Integer getSnakeId() {
+    private Integer getSnakeId() {
         snakeId++;
         return snakeId;
     }
