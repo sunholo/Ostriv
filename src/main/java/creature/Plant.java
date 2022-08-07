@@ -8,25 +8,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Getter
-public class Plant  extends Creature{
-    private  Integer id ;
-    private  final Double WEIGHT = 1.0;
+public class Plant extends Creature {
+    private Integer id;
+    private final Double WEIGHT = 1.0;
 
-    public Double getWeight() {
-        return WEIGHT;
-    }
-
-    public Double getWEIGHT() {
-        return WEIGHT;
-    }
 
     @Override
-    public void reproduction() {
+    public boolean dying() {
 
-    }
-
-    @Override
-    public void dying() {
+        System.out.println(this.getClass().getSimpleName() + " не вмирають");
+        return false;
 
     }
 

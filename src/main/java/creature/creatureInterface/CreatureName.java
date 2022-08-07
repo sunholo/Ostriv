@@ -1,6 +1,6 @@
 package creature.creatureInterface;
 
-public enum creatureName {
+public enum CreatureName {
     WOLF, //вовк
     DUCK, //качка
     PLANT, //рослина

@@ -2,31 +2,33 @@ package fx;
 
 import island.Island;
 
-import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+
 
 public class Runner {
     public static ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(12);
+
     public static void main(String[] args) {
         Island island = new Island();
         island.fillIsland(island.getIslandArray());
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         System.out.println(island);
+
+        //запускаємо нитку першої комірки
         island.getIslandArray()[0][0].start();
         try {
             island.getIslandArray()[0][0].join();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(island);
+
+
+        System.out.println(island.getIslandArray()[0][0]);
 
 
 //        scheduledPool.scheduleAtFixedRate(() -> System.out.println(island),0,5000, TimeUnit.MILLISECONDS);
