@@ -2,6 +2,7 @@ package creature;
 
 import creature.creatureInterface.Dying;
 import creature.creatureInterface.CreatureName;
+import creature.creatureInterface.Hunger;
 import creature.herbivorous.*;
 import creature.predator.*;
 import island.Island;
@@ -9,7 +10,11 @@ import island.Island;
 import java.util.HashMap;
 
 
-public abstract class Creature implements Dying {
+public abstract class Creature implements Dying , Hunger {
+    @Override
+    public void hunger() {
+        System.out.print("Переварюється їжа у " );
+    }
 
     //при розмноженні додається одна тварина цього виду в ту саму комірку
     public static void reproduction(HashMap<CreatureName, HashMap<Integer, Creature>> map, CreatureName creatureName) {

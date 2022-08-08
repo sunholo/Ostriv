@@ -19,6 +19,17 @@ public class Hamster extends Herbivorous {
     private volatile Double food;
 
     @Override
+    public void hunger() {
+        super.hunger();
+        System.out.println(this.getClass().getSimpleName());
+        if (food - 1 < 0){
+            food = 0d;
+        }
+        else {
+            food --;
+        }
+    }
+    @Override
     public void eating(HashMap<CreatureName, HashMap<Integer, Creature>> map) {
         super.eating(map);
         int random = ThreadLocalRandom.current().nextInt(1, 100);
@@ -63,8 +74,6 @@ public class Hamster extends Herbivorous {
             System.out.println("Нема їжі");
         }
     }
-
-
     @Override
     public boolean dying() {
         if (food > 0){
@@ -77,8 +86,9 @@ public class Hamster extends Herbivorous {
     }
 
     @Override
-    public void movement() {
-
+    public Integer movement() {
+        System.out.println(this.getClass().getSimpleName() + " намагається переміститись");
+        return 1;
     }
 
 

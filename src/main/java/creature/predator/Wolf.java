@@ -18,6 +18,19 @@ public class Wolf extends Predator {
     private volatile Double food;
     private static final Integer[] CHANCE = {0,0,0,0,0,10,15,60,80,60,70,15,10,40,0,0};
 
+
+    @Override
+    public void hunger() {
+        super.hunger();
+        System.out.println(this.getClass().getSimpleName());
+        if (food - 1 < 0){
+            food = 0d;
+        }
+        else {
+            food --;
+        }
+    }
+
     @Override
     public void eating(HashMap<CreatureName, HashMap<Integer, Creature>> map) {
         super.eating(map);
@@ -36,10 +49,9 @@ public class Wolf extends Predator {
     }
 
     @Override
-    public void movement() {
-
+    public Integer movement() {
+        return 3;
     }
-
 
 
 

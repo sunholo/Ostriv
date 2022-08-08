@@ -19,6 +19,18 @@ public class Fox extends Predator{
     private static final Integer[] CHANCE = {0,0,0,0,0,0,0,70,90,0,0,0,0,60,40,0};
 
     @Override
+    public void hunger() {
+        super.hunger();
+        System.out.println(this.getClass().getSimpleName());
+        if (food - 1 < 0){
+            food = 0d;
+        }
+        else {
+            food --;
+        }
+    }
+
+    @Override
     public void eating(HashMap<CreatureName, HashMap<Integer, Creature>> map) {
         super.eating(map);
         food = super.predatorEating(map, food, AMOUNT_FOOD, CHANCE);
@@ -35,8 +47,9 @@ public class Fox extends Predator{
     }
 
     @Override
-    public void movement() {
-
+    public Integer movement() {
+        System.out.println(this.getClass().getSimpleName() + " намагається переміститись");
+        return 2;
     }
 
 

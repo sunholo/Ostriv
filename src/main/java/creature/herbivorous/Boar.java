@@ -5,7 +5,6 @@ import creature.creatureInterface.CreatureName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -16,8 +15,19 @@ public class Boar extends Herbivorous {
     private volatile Integer id;
     private final Double WEIGHT = 400d;
     private final Double AMOUNT_FOOD = 50d;
-    private volatile Double food;
+    private  Double food;
 
+    @Override
+    public void hunger() {
+        super.hunger();
+        System.out.println(this.getClass().getSimpleName());
+        if (food - 1 < 0){
+            food = 0d;
+        }
+        else {
+            food --;
+        }
+    }
 
     @Override
     public void eating(HashMap<CreatureName, HashMap<Integer, Creature>> map) {
@@ -93,8 +103,9 @@ public class Boar extends Herbivorous {
     }
 
     @Override
-    public void movement() {
-
+    public Integer movement() {
+        System.out.println(this.getClass().getSimpleName() + " намагається переміститись");
+        return 2;
     }
 
 

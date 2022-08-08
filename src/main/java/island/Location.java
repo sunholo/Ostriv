@@ -10,9 +10,7 @@ import creature.predator.*;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,27 +18,27 @@ import java.util.Map;
 @ToString
 @Getter
 public class Location extends Thread {
-    private static final Integer MAX_WOLF = 30;
-    private static final Integer MAX_SNAKE = 30;
-    private static final Integer MAX_FOX = 30;
-    private static final Integer MAX_BEAR = 5;
-    private static final Integer MAX_EAGLE = 20;
-    private static final Integer MAX_HORSE = 20;
-    private static final Integer MAX_RABBIT = 150;
-    private static final Integer MAX_HAMSTER = 500;
-    private static final Integer MAX_GOAT = 140;
-    private static final Integer MAX_SHEEP = 140;
-    private static final Integer MAX_BOAR = 50;
-    private static final Integer MAX_COW = 10;
-    private static final Integer MAX_DUCK = 200;
-    private static final Integer MAX_WORM = 1000;
-    private static final Integer MAX_PLANT = 200;
-    private static final Integer MAX_DEER = 20;
+    public static final Integer MAX_WOLF = 30;
+    public static final Integer MAX_SNAKE = 30;
+    public static final Integer MAX_FOX = 30;
+    public static final Integer MAX_BEAR = 5;
+    public static final Integer MAX_EAGLE = 20;
+    public static final Integer MAX_HORSE = 20;
+    public static final Integer MAX_RABBIT = 150;
+    public static final Integer MAX_HAMSTER = 500;
+    public static final Integer MAX_GOAT = 140;
+    public static final Integer MAX_SHEEP = 140;
+    public static final Integer MAX_BOAR = 50;
+    public static final Integer MAX_COW = 10;
+    public static final Integer MAX_DUCK = 200;
+    public static final Integer MAX_WORM = 1000;
+    public static final Integer MAX_PLANT = 200;
+    public static final Integer MAX_DEER = 20;
     HashMap<CreatureName, HashMap<Integer, Creature>> map = new HashMap<>();
 
     //додавання створінь в локацію
-    public Creature addCreature(Location location, CreatureName creatureName, Integer id) {
-        return switch (creatureName) {
+    public void addCreature(Location location, CreatureName creatureName, Integer id) {
+        switch (creatureName) {
             case WOLF -> location.getMap().get(creatureName).put(id, new Wolf(id, 8d));
             case DUCK -> location.getMap().get(creatureName).put(id, new Duck(id, 0.15d));
             case HORSE -> location.getMap().get(creatureName).put(id, new Horse(id, 60d));
@@ -59,7 +57,7 @@ public class Location extends Thread {
             case SNAKE -> location.getMap().get(creatureName).put(id, new Snake(id, 3d));
 
 
-        };
+        }
 
     }
 
@@ -88,7 +86,6 @@ public class Location extends Thread {
             int count = 0;
             for (Map.Entry<Integer, Creature> y : creatureHashMap.entrySet()) {
                 count++;
-                System.out.println(y + " " + count);
             }
             if (count >= 2) {
                 int amountReproduction = (int) count / 2;
@@ -175,7 +172,7 @@ public class Location extends Thread {
                     }
 
                 }
-                System.out.println("народжується " + amountReproduction);
+                System.out.println("народжується " + amountReproduction + " " + x.getKey());
                 for (int i = 0; i < amountReproduction; i++) {
                     Creature.reproduction(map, x.getKey());
                 }
@@ -190,18 +187,26 @@ public class Location extends Thread {
             HashMap<Integer, Creature> creatureHashMap = x.getValue();
 
             for (var y : creatureHashMap.entrySet()) {
-                System.out.println(y);
                 if (y.getValue().dying()) {
                     arrayList.add(y.getKey());
                 }
             }
-            for (int i = 0; i < arrayList.size(); i++) {
-                creatureHashMap.remove(arrayList.get(i));
+            for (Integer integer : arrayList) {
+                creatureHashMap.remove(integer);
             }
             arrayList.clear();
         }
 
+        //проходимо по локації і зменшуємо їжу на 1 у всіх тварин
+        for (var x : map.entrySet()) {
+            HashMap<Integer, Creature> creatureHashMap = x.getValue();
+            for (var y : creatureHashMap.entrySet()) {
+                y.getValue().hunger();
+
+            }
+        }
 
     }
+
 
 }
