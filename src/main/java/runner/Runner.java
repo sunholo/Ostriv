@@ -1,4 +1,4 @@
-package fx;
+package runner;
 
 import island.Island;
 
