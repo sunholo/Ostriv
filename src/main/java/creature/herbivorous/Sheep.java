@@ -21,11 +21,10 @@ public class Sheep extends Herbivorous {
     public void hunger() {
         super.hunger();
         System.out.println(this.getClass().getSimpleName());
-        if (food - 1 < 0){
+        if (food - 1 < 0) {
             food = 0d;
-        }
-        else {
-            food --;
+        } else {
+            food--;
         }
     }
 

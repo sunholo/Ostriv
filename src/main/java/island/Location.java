@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-//локація це одна комірка острова
+
 @ToString
 @Getter
 public class Location extends Thread {

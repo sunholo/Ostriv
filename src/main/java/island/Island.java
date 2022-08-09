@@ -24,292 +24,279 @@ public class Island {
     Location[][] islandArray = new Location[LENGTH][HEIGHT];
 
     //тут треба створити метод переміщення тварин в переданій локації
-    public void moveAnimal(Location location , int i , int j) {
-                //проходимося по локації
-                for (var x : islandArray[i][j].getMap().entrySet()) {
-                    ArrayList<Integer> arrayList = new ArrayList<>();
+    public void moveAnimal(Location location, int i, int j) {
+        //проходимося по локації
+        for (var x : islandArray[i][j].getMap().entrySet()) {
+            ArrayList<Integer> arrayList = new ArrayList<>();
 
-                    for (var y : x.getValue().entrySet()) {
+            for (var y : x.getValue().entrySet()) {
 
-                        //перевіряємо чи це тварина
-                        if (y.getValue() instanceof Animal ) {
-                            //перевірка що тварина вміє рухатись
-                            if (((Animal) y.getValue()).movement() > 0) {
-                                //копіюємо тварину
-                                int length = i;
-                                int height = j;
-                                int keyCopy = y.getKey();
+                //перевіряємо чи це тварина
+                if (y.getValue() instanceof Animal) {
+                    //перевірка що тварина вміє рухатись
+                    if (((Animal) y.getValue()).movement() > 0) {
+                        //копіюємо тварину
+                        int length = i;
+                        int height = j;
+                        int keyCopy = y.getKey();
 
-                                for (int k = 0; k < ((Animal) y.getValue()).movement(); k++) {
-                                    //обирається шлях тварини
-                                    int randomWay = ThreadLocalRandom.current().nextInt(1, 4);
-                                    switch (randomWay) {
-                                        case 1 -> {
-                                            length++;
-                                            height++;
-                                        }
-                                        case 2 -> {
-                                            length--;
-                                            height--;
-                                        }
-
-                                        case 3 -> {
-                                            length++;
-                                            height--;
-                                        }
-                                        case 4 -> {
-                                            length--;
-                                            height++;
-                                        }
-                                    }
-                                    //перевіряємо не виходить шлях за межі острова
-                                    if (length < 0) {
-                                        length = 0;
-                                    }
-                                    if (length >= LENGTH) {
-                                        length = LENGTH - 1;
-                                    }
-                                    if (height < 0) {
-                                        height = 0;
-                                    }
-                                    if (height >= HEIGHT) {
-                                        height = HEIGHT - 1;
-                                    }
+                        for (int k = 0; k < ((Animal) y.getValue()).movement(); k++) {
+                            //обирається шлях тварини
+                            int randomWay = ThreadLocalRandom.current().nextInt(1, 4);
+                            switch (randomWay) {
+                                case 1 -> {
+                                    length++;
+                                    height++;
+                                }
+                                case 2 -> {
+                                    length--;
+                                    height--;
                                 }
 
-                                //перевірити кінцеву локацю на максимальну кількість тварин
-                                int count = 0;
-                                for (var q : islandArray[length][height].getMap().entrySet()) {
-                                    for (var e : q.getValue().entrySet()) {
-                                        if (e.getValue().getClass().equals(y.getValue().getClass())) {
-                                            count++;
-                                        }
-                                    }
+                                case 3 -> {
+                                    length++;
+                                    height--;
                                 }
-                                // після перевірок на співрадіння класу
-                                // і чи не перевищує максимальної кількості тварин цього виду
-                                // чи немає тварини зі таким ключем
-                                // вставляю в кінцеву комірку тварину
-                                if (y.getValue().getClass().equals(Wolf.class)){
-                                    if (count < Location.MAX_WOLF && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.WOLF)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.WOLF)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.WOLF)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
+                                case 4 -> {
+                                    length--;
+                                    height++;
                                 }
-                               else if (y.getValue().getClass().equals(Bear.class)){
-                                    if (count < Location.MAX_BEAR && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.BEAR)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.BEAR)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.BEAR)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Eagle.class)){
-                                    if (count < Location.MAX_EAGLE && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.EAGLE)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.EAGLE)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.EAGLE)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Fox.class)){
-                                    if (count < Location.MAX_FOX && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.FOX)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.FOX)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.FOX)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Snake.class)){
-                                    if (count < Location.MAX_SNAKE && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.SNAKE)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.SNAKE)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.SNAKE)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Boar.class)){
-                                    if (count < Location.MAX_BOAR && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.BOAR)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.BOAR)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.BOAR)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Cow.class)){
-                                    if (count < Location.MAX_COW && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.COW)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.COW)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.COW)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Deer.class)){
-                                    if (count < Location.MAX_DEER && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.DEER)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.DEER)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.DEER)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Duck.class)){
-                                    if (count < Location.MAX_DUCK && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.DUCK)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.DUCK)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.DUCK)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Goat.class)){
-                                    if (count < Location.MAX_GOAT && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.GOAT)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.GOAT)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.GOAT)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Hamster.class)){
-                                    if (count < Location.MAX_HAMSTER && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.HAMSTER)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.HAMSTER)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.HAMSTER)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Horse.class)){
-                                    if (count < Location.MAX_HORSE && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.HORSE)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.HORSE)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.HORSE)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Rabbit.class)){
-                                    if (count < Location.MAX_RABBIT && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.RABBIT)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.RABBIT)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.RABBIT)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
-                                }
-                               else if (y.getValue().getClass().equals(Sheep.class)){
-                                    if (count < Location.MAX_SHEEP && !islandArray[length][height]
-                                            .getMap()
-                                            .get(CreatureName.SHEEP)
-                                            .containsKey(keyCopy)){
-                                        islandArray[length][height]
-                                                .getMap()
-                                                .get(CreatureName.SHEEP)
-                                                .put(keyCopy,islandArray[i][j]
-                                                        .getMap()
-                                                        .get(CreatureName.SHEEP)
-                                                        .get(keyCopy));
-                                        arrayList.add(keyCopy);
-                                    }
+                            }
+                            //перевіряємо не виходить шлях за межі острова
+                            if (length < 0) {
+                                length = 0;
+                            }
+                            if (length >= LENGTH) {
+                                length = LENGTH - 1;
+                            }
+                            if (height < 0) {
+                                height = 0;
+                            }
+                            if (height >= HEIGHT) {
+                                height = HEIGHT - 1;
+                            }
+                        }
+
+                        //перевірити кінцеву локацю на максимальну кількість тварин
+                        int count = 0;
+                        for (var q : islandArray[length][height].getMap().entrySet()) {
+                            for (var e : q.getValue().entrySet()) {
+                                if (e.getValue().getClass().equals(y.getValue().getClass())) {
+                                    count++;
                                 }
                             }
                         }
+                        // після перевірок на співрадіння класу
+                        // і чи не перевищує максимальної кількості тварин цього виду
+                        // чи немає тварини зі таким ключем
+                        // вставляю в кінцеву комірку тварину
+                        if (y.getValue().getClass().equals(Wolf.class)) {
+                            if (count < Location.MAX_WOLF && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.WOLF)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.WOLF)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.WOLF)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Bear.class)) {
+                            if (count < Location.MAX_BEAR && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.BEAR)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.BEAR)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.BEAR)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Eagle.class)) {
+                            if (count < Location.MAX_EAGLE && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.EAGLE)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.EAGLE)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.EAGLE)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Fox.class)) {
+                            if (count < Location.MAX_FOX && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.FOX)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.FOX)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.FOX)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Snake.class)) {
+                            if (count < Location.MAX_SNAKE && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.SNAKE)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.SNAKE)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.SNAKE)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Boar.class)) {
+                            if (count < Location.MAX_BOAR && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.BOAR)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.BOAR)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.BOAR)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Cow.class)) {
+                            if (count < Location.MAX_COW && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.COW)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.COW)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.COW)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Deer.class)) {
+                            if (count < Location.MAX_DEER && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.DEER)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.DEER)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.DEER)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Duck.class)) {
+                            if (count < Location.MAX_DUCK && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.DUCK)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.DUCK)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.DUCK)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Goat.class)) {
+                            if (count < Location.MAX_GOAT && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.GOAT)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.GOAT)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.GOAT)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Hamster.class)) {
+                            if (count < Location.MAX_HAMSTER && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.HAMSTER)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.HAMSTER)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.HAMSTER)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Horse.class)) {
+                            if (count < Location.MAX_HORSE && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.HORSE)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.HORSE)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.HORSE)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Rabbit.class)) {
+                            if (count < Location.MAX_RABBIT && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.RABBIT)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.RABBIT)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.RABBIT)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        } else if (y.getValue().getClass().equals(Sheep.class)) {
+                            if (count < Location.MAX_SHEEP && !islandArray[length][height]
+                                    .getMap()
+                                    .get(CreatureName.SHEEP)
+                                    .containsKey(keyCopy)) {
+                                islandArray[length][height]
+                                        .getMap()
+                                        .get(CreatureName.SHEEP)
+                                        .put(keyCopy, islandArray[i][j]
+                                                .getMap()
+                                                .get(CreatureName.SHEEP)
+                                                .get(keyCopy));
+                                arrayList.add(keyCopy);
+                            }
+                        }
                     }
-                    //  видаляю в початковій комірці ключи тварин ща перемістив
-                    for (Integer integer : arrayList) {
-                        x.getValue().remove(integer);
-                    }
-                    arrayList.clear();
                 }
             }
+            //  видаляю в початковій комірці ключи тварин ща перемістив
+            for (Integer integer : arrayList) {
+                x.getValue().remove(integer);
+            }
+            arrayList.clear();
+        }
+    }
 
     //початкове заповнення острова локаціями
     public void fillIsland(Location[][] array) {
@@ -376,6 +363,7 @@ public class Island {
         creatureId++;
         return creatureId;
     }
+
 
     @Override
     public String toString() {

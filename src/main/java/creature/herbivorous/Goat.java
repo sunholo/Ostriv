@@ -11,8 +11,8 @@ import java.util.HashMap;
 @AllArgsConstructor
 @ToString
 @Getter
-public class Goat extends Herbivorous{
-    private volatile Integer id ;
+public class Goat extends Herbivorous {
+    private volatile Integer id;
     private final Double WEIGHT = 60d;
     private final Double AMOUNT_FOOD = 10d;
     private volatile Double food;
@@ -21,24 +21,24 @@ public class Goat extends Herbivorous{
     public void hunger() {
         super.hunger();
         System.out.println(this.getClass().getSimpleName());
-        if (food - 1 < 0){
+        if (food - 1 < 0) {
             food = 0d;
-        }
-        else {
-            food --;
+        } else {
+            food--;
         }
     }
+
     @Override
     public void eating(HashMap<CreatureName, HashMap<Integer, Creature>> map) {
         super.eating(map);
-        food = super.herbivorousEating(map,food,AMOUNT_FOOD);
+        food = super.herbivorousEating(map, food, AMOUNT_FOOD);
     }
+
     @Override
     public boolean dying() {
-        if (food > 0){
+        if (food > 0) {
             return false;
-        }
-        else {
+        } else {
             System.out.println(this.getClass().getSimpleName() + " вмер");
             return true;
         }

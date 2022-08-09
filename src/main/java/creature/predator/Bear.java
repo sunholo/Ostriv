@@ -22,11 +22,10 @@ public class Bear extends Predator {
     public void hunger() {
         super.hunger();
         System.out.println(this.getClass().getSimpleName());
-        if (food - 1 < 0){
+        if (food - 1 < 0) {
             food = 0d;
-        }
-        else {
-            food --;
+        } else {
+            food--;
         }
     }
 
@@ -38,10 +37,9 @@ public class Bear extends Predator {
 
     @Override
     public boolean dying() {
-        if (food > 0){
+        if (food > 0) {
             return false;
-        }
-        else {
+        } else {
             System.out.println(this.getClass().getSimpleName() + " вмер");
             return true;
         }

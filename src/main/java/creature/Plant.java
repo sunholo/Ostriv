@@ -1,7 +1,5 @@
 package creature;
 
-
-import creature.herbivorous.Worm;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
