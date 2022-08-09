@@ -15,13 +15,13 @@ public class Plant extends Creature {
     @Override
     public void hunger() {
         super.hunger();
-        System.out.println(Plant.class.getSimpleName() + " не голодають");
+//        System.out.println(Plant.class.getSimpleName() + " не голодають");
     }
 
     @Override
     public boolean dying() {
 
-        System.out.println(this.getClass().getSimpleName() + " не вмирають");
+//        System.out.println(this.getClass().getSimpleName() + " не вмирають");
         return false;
 
     }

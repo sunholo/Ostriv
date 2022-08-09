@@ -23,7 +23,7 @@ public class Duck extends Herbivorous {
     @Override
     public void hunger() {
         super.hunger();
-        System.out.println(this.getClass().getSimpleName());
+   //     System.out.println(this.getClass().getSimpleName());
         if (food - 1 < 0) {
             food = 0d;
         } else {
@@ -37,11 +37,11 @@ public class Duck extends Herbivorous {
         int random = ThreadLocalRandom.current().nextInt(1, 100);
         //качур їсть рослину
         if (!map.get(CreatureName.PLANT).isEmpty()) {
-            System.out.println(CreatureName.PLANT + " є");
+        //    System.out.println(CreatureName.PLANT + " є");
             Integer key;
             for (int i = 0; i < Integer.MAX_VALUE; i++) {
                 if (map.get(CreatureName.PLANT).containsKey(i)) {
-                    System.out.println("качур їсть " + CreatureName.PLANT);
+            //        System.out.println("качур їсть " + CreatureName.PLANT);
                     key = i;
                     if (food + 1 >= AMOUNT_FOOD) {
                         food = getAMOUNT_FOOD();
@@ -53,11 +53,11 @@ public class Duck extends Herbivorous {
         }
         //качур їсть хробака
         else if (!map.get(CreatureName.WORM).isEmpty() && random <= 90) {
-            System.out.println(CreatureName.WORM + " є");
+        //    System.out.println(CreatureName.WORM + " є");
             Integer key;
             for (int i = 0; i < Integer.MAX_VALUE; i++) {
                 if (map.get(CreatureName.WORM).containsKey(i)) {
-                    System.out.println("качур їсть " + CreatureName.WORM);
+         //           System.out.println("качур їсть " + CreatureName.WORM);
                     key = i;
                     if (food + 0.01 >= AMOUNT_FOOD) {
                         food = getAMOUNT_FOOD();
@@ -69,7 +69,7 @@ public class Duck extends Herbivorous {
                 }
             }
         } else {
-            System.out.println("Нема їжі");
+       //     System.out.println("Нема їжі");
         }
     }
 
@@ -78,14 +78,14 @@ public class Duck extends Herbivorous {
         if (food > 0) {
             return false;
         } else {
-            System.out.println(this.getClass().getSimpleName() + " вмер");
+    //        System.out.println(this.getClass().getSimpleName() + " вмер");
             return true;
         }
     }
 
     @Override
     public Integer movement() {
-        System.out.println(this.getClass().getSimpleName() + " намагається переміститись");
+ //       System.out.println(this.getClass().getSimpleName() + " намагається переміститись");
         return 4;
     }
 

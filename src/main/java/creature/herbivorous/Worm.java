@@ -20,18 +20,18 @@ public class Worm extends Herbivorous {
     @Override
     public void hunger() {
         super.hunger();
-        System.out.println(Worm.class.getSimpleName() + " не голодають");
+//        System.out.println(Worm.class.getSimpleName() + " не голодають");
     }
 
     @Override
     public boolean dying() {
-        System.out.println(this.getClass().getSimpleName() + " не вмирають");
+//        System.out.println(this.getClass().getSimpleName() + " не вмирають");
         return false;
     }
 
     @Override
     public Integer movement() {
-        System.out.println(this.getClass().getSimpleName() + " не переміщується");
+ //       System.out.println(this.getClass().getSimpleName() + " не переміщується");
         return 0;
     }
 

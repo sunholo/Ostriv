@@ -13,7 +13,7 @@ import java.util.HashMap;
 public abstract class Creature implements Dying, Hunger {
     @Override
     public void hunger() {
-        System.out.print("Переварюється їжа у ");
+        //  System.out.print("Переварюється їжа у ");
     }
 
     //при розмноженні додається одна тварина цього виду в ту саму комірку

@@ -52,7 +52,7 @@ public class Runner {
         scheduledPool.scheduleAtFixedRate(() -> System.out.println(island), 2, 5, TimeUnit.SECONDS);
 
         try {
-            Thread.sleep(12000);
+            Thread.sleep(50000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

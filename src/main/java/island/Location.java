@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@ToString
+
 @Getter
 public class Location extends Thread {
     public static final Integer MAX_WOLF = 30;
@@ -70,7 +70,7 @@ public class Location extends Thread {
             HashMap<Integer, Creature> creatureHashMap = x.getValue();
 
             for (var y : creatureHashMap.entrySet()) {
-                System.out.println(y);
+              //  System.out.println(y);
                 if (y.getValue() instanceof Herbivorous) {
                     ((Herbivorous) y.getValue()).eating(map);
                 } else if (y.getValue() instanceof Predator) {
@@ -172,7 +172,7 @@ public class Location extends Thread {
                     }
 
                 }
-                System.out.println("народжується " + amountReproduction + " " + x.getKey());
+           //     System.out.println("народжується " + amountReproduction + " " + x.getKey());
                 for (int i = 0; i < amountReproduction; i++) {
                     Creature.reproduction(map, x.getKey());
                 }
@@ -208,5 +208,26 @@ public class Location extends Thread {
 
     }
 
+    @Override
+    public String toString() {
 
+        return "Location{" +
+                "\uD83D\uDC17=" + map.get(CreatureName.BOAR).entrySet().size()
+                + "\uD83D\uDC03=" + map.get(CreatureName.COW).entrySet().size()
+                + "\uD83E\uDD8C=" + map.get(CreatureName.DEER).entrySet().size()
+                + "\uD83E\uDD86=" + map.get(CreatureName.DUCK).entrySet().size()
+                + "\uD83D\uDC10=" + map.get(CreatureName.GOAT).entrySet().size()
+                + "\uD83D\uDC01=" + map.get(CreatureName.HAMSTER).entrySet().size()
+                + "\uD83D\uDC0E=" + map.get(CreatureName.HORSE).entrySet().size()
+                + "\uD83D\uDC07=" + map.get(CreatureName.RABBIT).entrySet().size()
+                + "\uD83D\uDC11=" + map.get(CreatureName.SHEEP).entrySet().size()
+                + "\uD83D\uDC1B=" + map.get(CreatureName.WORM).entrySet().size()
+                + "\uD83D\uDC3B=" + map.get(CreatureName.BEAR).entrySet().size()
+                + "\uD83E\uDD85=" + map.get(CreatureName.EAGLE).entrySet().size()
+                + "\uD83E\uDD8A=" + map.get(CreatureName.FOX).entrySet().size()
+                + "\uD83D\uDC0D=" + map.get(CreatureName.SNAKE).entrySet().size()
+                + "\uD83D\uDC3A=" + map.get(CreatureName.WOLF).entrySet().size()
+                + "\uD83C\uDF3F=" + map.get(CreatureName.PLANT).entrySet().size()
+                +'}';
+    }
 }

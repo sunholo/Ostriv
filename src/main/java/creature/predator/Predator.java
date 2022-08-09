@@ -11,7 +11,7 @@ public abstract class Predator extends Animal {
 
     @Override
     public void eating(HashMap<CreatureName, HashMap<Integer, Creature>> map) {
-        System.out.println("хижак щукає їжу");
+        //   System.out.println("хижак щукає їжу");
 
     }
 
@@ -51,7 +51,7 @@ public abstract class Predator extends Animal {
         } else if (!map.get(CreatureName.PLANT).isEmpty() && arr[15] > 0) {
             return eat(map, food, AMOUNT_FOOD, CreatureName.PLANT, arr[15], 1d);
         } else {
-            System.out.println("Нема їжі");
+//            System.out.println("Нема їжі");
         }
 
         return food;
@@ -62,13 +62,13 @@ public abstract class Predator extends Animal {
                       Double AMOUNT_FOOD, CreatureName name, Integer chance, Double weight) {
         if (chance != 0) {
             int random = ThreadLocalRandom.current().nextInt(1, 100);
-            System.out.println("шанс зїдення = " + chance);
+            //       System.out.println("шанс зїдення = " + chance);
             if (random <= chance) {
-                System.out.println(name + " є");
+                //       System.out.println(name + " є");
                 Integer key;
                 for (int i = 0; i < Integer.MAX_VALUE; i++) {
                     if (map.get(name).containsKey(i)) {
-                        System.out.println("хижак їсть " + name);
+                        //      System.out.println("хижак їсть " + name);
                         key = i;
                         if (food + weight >= AMOUNT_FOOD) {
                             food = AMOUNT_FOOD;
@@ -80,7 +80,7 @@ public abstract class Predator extends Animal {
                     }
                 }
             } else {
-                System.out.println("Не вдалося з'їсти");
+                //   System.out.println("Не вдалося з'їсти");
             }
         }
         return food;

@@ -10,18 +10,18 @@ public abstract class Herbivorous extends Animal {
 
     @Override
     public void eating(HashMap<CreatureName, HashMap<Integer, Creature>> map) {
-        System.out.println("трвоїдний шукає їжу");
+      //  System.out.println("трвоїдний шукає їжу");
     }
 
     //в цьому методі рослиноїдні ідять виключно рослини
     public Double herbivorousEating(HashMap<CreatureName, HashMap<Integer,
             Creature>> map, Double food, Double AMOUNT_FOOD) {
         if (!map.get(CreatureName.PLANT).isEmpty()) {
-            System.out.println(CreatureName.PLANT + " є");
+         //   System.out.println(CreatureName.PLANT + " є");
             Integer key;
             for (int i = 0; i < Integer.MAX_VALUE; i++) {
                 if (map.get(CreatureName.PLANT).containsKey(i)) {
-                    System.out.println("Травоїдний їсть " + CreatureName.PLANT);
+                  //  System.out.println("Травоїдний їсть " + CreatureName.PLANT);
                     key = i;
                     if (food + 1 >= AMOUNT_FOOD) {
                         food = AMOUNT_FOOD;
@@ -33,7 +33,7 @@ public abstract class Herbivorous extends Animal {
                 }
             }
         } else {
-            System.out.println("Нема їжі");
+          //  System.out.println("Нема їжі");
         }
         return food;
     }
